@@ -12,6 +12,8 @@ import networkx as nx
 
 from univcache.log import get_logger
 
+stored_results = {}
+
 
 @dataclass
 class FuncInfo:

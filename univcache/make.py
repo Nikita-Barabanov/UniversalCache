@@ -7,8 +7,7 @@ import networkx as nx
 
 from univcache.log import get_logger
 
-
-stored_results = {}
+from store.objects import stored_results
 
 
 def build_target(result_type: type, graph: DependencyGraph) -> list:
@@ -22,3 +21,5 @@ def build_target(result_type: type, graph: DependencyGraph) -> list:
             except Exception:
                 get_logger(__name__).warn(f"Incorrect {edge_info.info.name} rule processing")
         pre_job = job
+
+    return stored_results[result_type]
