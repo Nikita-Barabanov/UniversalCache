@@ -76,6 +76,23 @@ class GraphEdge:
         return f"GraphEdge({self.info})"
 
 
+class Versioned:
+    def __init__(self, target_class, version):
+        self.target_class = target_class
+        self.version = version
+
+    @classmethod
+    def __class_getitem__(cls, item: tuple[type, int]):
+        if isinstance(item, tuple) and len(item) == 2:
+            target_class, version = item
+            if isinstance(version, int) or isinstance(version, Ellipsis):
+                return Versioned(target_class, version)
+            else:
+                raise TypeError("Version can be integer or ... only")
+        else:
+            raise TypeError("Expected two elements: class, version")
+
+
 class DependencyGraph:
     """Dependency graph representation"""
     def __init__(self, init_graph=None):
