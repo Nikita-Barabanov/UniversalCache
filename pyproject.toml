@@ -11,12 +11,13 @@ description = "Interconnected objects caching library"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "GPL-3.0 license" }
-dynamic = ["dependencies"]
+dependencies = [
+    "networkx",
+
+]
 version = '0.1'
 
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["univcache*"]
 
-[tool.setuptools-pipfile]
-path = "Pipfile"
